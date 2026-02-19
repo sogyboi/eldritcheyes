@@ -1,0 +1,9 @@
+{
+    "display_name": "Eldritch Eyes",
+    "js": "index.js",
+    "css": "style.css",
+    "author": "Antigravity",
+    "version": "1.0.0",
+    "description": "Adds blinking eldritch eyes to chat",
+    "auto_update": false
+}

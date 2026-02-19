@@ -1,0 +1,66 @@
+/* Eldritch Eyes Container */
+.eldritch-eyes-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+/* Individual Eye */
+.eldritch-eye {
+    position: absolute;
+    width: 60px;
+    height: 35px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    filter: drop-shadow(0 0 10px #ff0000) drop-shadow(0 0 20px #8b0000);
+    animation: eldritch-blink 4s infinite;
+}
+
+.eldritch-eye.visible {
+    opacity: 0.8;
+}
+
+.eldritch-eye svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Blink Animation */
+@keyframes eldritch-blink {
+    0%, 45%, 55%, 100% {
+        transform: scaleY(1);
+    }
+    50% {
+        transform: scaleY(0.1);
+    }
+}
+
+/* Position eyes in chat area */
+#chat .message {
+    position: relative;
+}
+
+#chat .message .eldritch-message-eye {
+    position: absolute;
+    width: 30px;
+    height: 18px;
+    opacity: 0;
+    right: 10px;
+    top: 5px;
+    transition: opacity 0.5s;
+    filter: drop-shadow(0 0 5px #ff0000);
+}
+
+#chat .message .eldritch-message-eye.visible {
+    opacity: 0.6;
+}
+
+#chat .message .eldritch-message-eye svg {
+    width: 100%;
+    height: 100%;
+}

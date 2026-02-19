@@ -67,7 +67,7 @@ function addMessageEyes() {
 
 registerExtension({
     name: 'Eldritch Eyes',
-    id: 'eldritchEyes',
+    id: 'eldritcheyes',
     description: 'Adds blinking eldritch eyes to chat',
     version: '1.0.0',
     async init() {

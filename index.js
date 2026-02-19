@@ -1,4 +1,4 @@
-import { registerExtension } from '../../../extensions.js';
+import { extension_settings, getContext } from "../../../extensions.js";
 
 function createEldritchEyeSVG() {
     return `
@@ -86,14 +86,9 @@ function addMessageEyes() {
     }
 }
 
-registerExtension({
-    name: 'Eldritch Eyes',
-    id: 'eldritcheyes',
-    description: 'Adds blinking eldritch eyes to chat',
-    version: '1.0.0',
-    async init() {
-        console.log('Eldritch Eyes extension initialized');
-        addFloatingEyes();
-        addMessageEyes();
-    },
+// Initialization using jQuery ready block (Standard for SillyTavern extensions)
+jQuery(async () => {
+    addFloatingEyes();
+    addMessageEyes();
+    console.log('[eldritcheyes] Extension initialized');
 });

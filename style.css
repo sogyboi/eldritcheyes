@@ -1,4 +1,4 @@
-/* Eldritch Eyes Container */
+/* Eldritch Eyes Container - Fixed to viewport */
 .eldritch-eyes-container {
     position: fixed;
     top: 0;
@@ -6,7 +6,9 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 9999;
+    /* Crucial: Cannot block clicks */
+    z-index: 100;
+    /* Higher than background, lower than UI controls */
     overflow: hidden;
 }
 
@@ -19,6 +21,7 @@
     transition: opacity 0.5s ease-in-out;
     filter: drop-shadow(0 0 10px #ff0000) drop-shadow(0 0 20px #8b0000);
     animation: eldritch-blink 4s infinite;
+    pointer-events: none;
 }
 
 .eldritch-eye.visible {
@@ -32,35 +35,39 @@
 
 /* Blink Animation */
 @keyframes eldritch-blink {
-    0%, 45%, 55%, 100% {
+
+    0%,
+    45%,
+    55%,
+    100% {
         transform: scaleY(1);
     }
+
     50% {
         transform: scaleY(0.1);
     }
 }
 
-/* Position eyes in chat area */
-#chat .message {
-    position: relative;
-}
-
-#chat .message .eldritch-message-eye {
+/* Position eyes in message bubble instead of the whole row */
+.mes .eldritch-message-eye {
     position: absolute;
     width: 30px;
     height: 18px;
     opacity: 0;
-    right: 10px;
+    right: 5px;
     top: 5px;
     transition: opacity 0.5s;
     filter: drop-shadow(0 0 5px #ff0000);
+    pointer-events: none;
+    /* Prevent blocking buttons in messages */
+    z-index: 10;
 }
 
-#chat .message .eldritch-message-eye.visible {
+.mes .eldritch-message-eye.visible {
     opacity: 0.6;
 }
 
-#chat .message .eldritch-message-eye svg {
+.mes .eldritch-message-eye svg {
     width: 100%;
     height: 100%;
 }

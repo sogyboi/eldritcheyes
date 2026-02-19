@@ -45,12 +45,21 @@ function addMessageEyes() {
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
             mutation.addedNodes.forEach((node) => {
-                if (node.nodeType === 1 && node.classList?.contains('message')) {
-                    if (!node.querySelector('.eldritch-message-eye') && Math.random() > 0.6) {
+                if (node.nodeType === 1) {
+                    // Look for the message bubble container
+                    const mes = node.classList?.contains('mes') ? node : node.querySelector?.('.mes');
+
+                    if (mes && !mes.querySelector('.eldritch-message-eye') && Math.random() > 0.6) {
+                        // Ensure message bubble is relative for our absolute positioning
+                        const style = window.getComputedStyle(mes);
+                        if (style.position === 'static') {
+                            mes.style.position = 'relative';
+                        }
+
                         const eye = document.createElement('div');
                         eye.className = 'eldritch-message-eye';
                         eye.innerHTML = createEldritchEyeSVG();
-                        node.appendChild(eye);
+                        mes.appendChild(eye);
 
                         setTimeout(() => eye.classList.add('visible'), 500);
                     }
@@ -62,6 +71,18 @@ function addMessageEyes() {
     const chat = document.getElementById('chat');
     if (chat) {
         observer.observe(chat, { childList: true, subtree: true });
+
+        // Process existing messages
+        chat.querySelectorAll('.mes').forEach(mes => {
+            if (!mes.querySelector('.eldritch-message-eye') && Math.random() > 0.6) {
+                mes.style.position = 'relative';
+                const eye = document.createElement('div');
+                eye.className = 'eldritch-message-eye';
+                eye.innerHTML = createEldritchEyeSVG();
+                mes.appendChild(eye);
+                setTimeout(() => eye.classList.add('visible'), 500);
+            }
+        });
     }
 }
 

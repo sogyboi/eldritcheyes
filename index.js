@@ -1,4 +1,4 @@
-import { registerExtension } from '../../extensions.js';
+import { registerExtension } from '../../../extensions.js';
 
 function createEldritchEyeSVG() {
     return `
@@ -22,7 +22,7 @@ function addFloatingEyes() {
     container.className = 'eldritch-eyes-container';
     container.id = 'eldritch-eyes-bg';
     document.body.appendChild(container);
-    
+
     for (let i = 0; i < 8; i++) {
         const eye = document.createElement('div');
         eye.className = 'eldritch-eye';
@@ -32,7 +32,7 @@ function addFloatingEyes() {
         eye.style.animationDelay = Math.random() * 4 + 's';
         eye.style.transform = `rotate(${Math.random() * 360}deg)`;
         container.appendChild(eye);
-        
+
         // Random visibility
         setInterval(() => {
             eye.classList.toggle('visible', Math.random() > 0.7);
@@ -51,14 +51,14 @@ function addMessageEyes() {
                         eye.className = 'eldritch-message-eye';
                         eye.innerHTML = createEldritchEyeSVG();
                         node.appendChild(eye);
-                        
+
                         setTimeout(() => eye.classList.add('visible'), 500);
                     }
                 }
             });
         });
     });
-    
+
     const chat = document.getElementById('chat');
     if (chat) {
         observer.observe(chat, { childList: true, subtree: true });
